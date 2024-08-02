@@ -22,6 +22,12 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
+        if(empty($task)){
+            return response()->json([
+                "status" =>  404001,
+                "message" => "Task not found"
+            ]);
+        }
 
         $data = new TaskResource(200001, 'Task retrieved successfully', $task);
 
@@ -38,9 +44,32 @@ class TaskController extends Controller
 
     public function update(Request $request, $id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::find($id);
+        if(empty($task)){
+            return response()->json([
+                "status" =>  404001,
+                "message" => "Task not found"
+            ]);
+        }
+
         $task->update($request->all());
 
         return new TaskResource(200001, 'Task updated successfully', $task);
+    }
+
+    public function destroy($id)
+    {
+
+        $task = Task::find($id);
+       if(empty($task)){
+            return response()->json([
+                "status" =>  404001,
+                "message" => "Task not found"
+            ]);
+       }
+
+        $task->delete();
+
+        return new TaskResource(200001, 'Task todo deleted successfully', null);
     }
 }
