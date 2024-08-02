@@ -27,9 +27,9 @@ class TaskResource extends ResourceCollection
             'meta' => [
                 'total'       => $this->total(),
                 'count'       => $this->count(),
-                'perPage'     => $this->perPage(),
-                'currentPage' => $this->currentPage(),
-                'totalPages'  => $this->lastPage(),
+                'per_page'     => $this->perPage(),
+                'current_page' => $this->currentPage(),
+                'total_page'  => $this->lastPage(),
             ],
         ];
     }
