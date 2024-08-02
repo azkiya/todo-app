@@ -14,9 +14,18 @@ class TaskController extends Controller
     {
         $tasks = Task::latest()->paginate(5);
 
-        $data =  new TaskResource("200001", 'Task todo retrieved successfully', $tasks);
+        $data =  new TaskResource(200001, 'Task todo retrieved successfully', $tasks, true);
 
         return $data->toJson();
+    }
+
+    public function show($id)
+    {
+        $task = Task::find($id);
+
+        $data = new TaskResource(200001, 'Task retrieved successfully', $task);
+
+        return $data;
     }
 
     public function store(TaskRequest $request)
@@ -24,6 +33,14 @@ class TaskController extends Controller
         $validated = $request->validated();
         $task = Task::create($validated);
 
-        return new TaskResource("201001", 'Task todo created successfully', $task);
+        return new TaskResource(201001, 'Task todo created successfully', $task);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $task = Task::findOrFail($id);
+        $task->update($request->all());
+
+        return new TaskResource(200001, 'Task updated successfully', $task);
     }
 }
