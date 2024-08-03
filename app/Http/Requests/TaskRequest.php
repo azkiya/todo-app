@@ -25,6 +25,7 @@ class TaskRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:100',
+            'description' => 'string',
             'user_id' => 'required',
             'start_at' => 'required|date',
             'end_at' => 'required|date'
@@ -37,6 +38,7 @@ class TaskRequest extends FormRequest
             'title.required' => 'A title is required',
             'title.string' => 'A title must to be string',
             'title.max' => 'A title has max 100 character',
+            'description.string' => 'A description must to be string',
             'user_id.required' => 'A id of user is required',
             'start_at.required' => 'A start date of task is required',
             'start_at.date' => 'A start date of task must to be datetime',

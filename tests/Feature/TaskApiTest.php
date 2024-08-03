@@ -75,7 +75,10 @@ class TaskApiTest extends TestCase
             'message' => true,
             'data' => true,
         ]);
-        $this->assertDatabaseHas('tasks', $data);
+        $this->assertDatabaseHas('tasks', [
+            'user_id' => 1,
+            'title' => 'Test Todo List',
+            'description' => 'This is the description of the test task.']);
     }
 
     public function test_can_delete_post()
