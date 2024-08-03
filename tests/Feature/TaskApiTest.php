@@ -23,6 +23,32 @@ class TaskApiTest extends TestCase
         ]);
     }
 
+    public function test_can_search_task_by_status()
+    {
+        $task = Task::factory()->create(['status' => 2]);
+
+        $response = $this->getJson('/api/tasks?status=2');
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['status' => '2']);
+        $response->assertJsonMissing(['status' => '1']);
+    }
+
+    public function test_can_search_task_by_start_end_at()
+    {
+        $task = Task::factory()->create([
+            'start_at' => "2024-08-01 01:00:00",
+            'end_at' => "2024-08-01 02:00:00",
+        ]);
+
+        $response = $this->getJson('/api/tasks?start_at=2024-08-01 01:00:00&end_at=2024-08-01 02:00:00');
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['start_at' => "2024-08-01 01:00:00"]);
+        $response->assertJsonMissing(['start_at' => "2024-08-01 11:00:00"]);
+    }
+
+
     public function test_can_get_single_tasks_by_id(): void
     {
         // Create a single task

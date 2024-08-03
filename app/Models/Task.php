@@ -21,9 +21,16 @@ class Task extends Model
         'deleted_at',
     ];
 
-    public function search($query)
+    public function scopeSearch($query, $searchTerms)
     {
-
+        if (isset($searchTerms['status'])) {
+            $query->where('status', $searchTerms['status']);
+        }
+        if (isset($searchTerms['start_at']) && isset($searchTerms['end_at'])) {
+            $query->whereBetween('start_at', [$searchTerms['start_at'], $searchTerms['end_at']]);
+        }
+        
+        return $query;
     }
 
     protected function casts(): array

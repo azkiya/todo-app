@@ -10,12 +10,18 @@ use App\Http\Resources\TaskResource;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::latest()->paginate(5);
+        $searchTerms = $request->all();
+
+        if(!empty($searchTerms))
+        {
+            $tasks = Task::query()->search($searchTerms)->paginate(10);
+        }else{
+            $tasks = Task::latest()->paginate(10);
+        }
 
         $data =  new TaskResource(200001, 'Task todo retrieved successfully', $tasks, true);
-
         return $data->toJson();
     }
 
