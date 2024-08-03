@@ -14,7 +14,6 @@ class TaskApiTest extends TestCase
     public function test_can_get_all_tasks(): void
     {
         $response = $this->get('/api/tasks');
-        $response->dd();
         $response
         ->assertStatus(200)
         ->assertJson([
@@ -106,6 +105,40 @@ class TaskApiTest extends TestCase
             'user_id' => 1,
             'title' => 'Test Todo List',
             'description' => 'This is the description of the test task.']);
+    }
+    
+    public function test_update_task()
+    {
+        // Create a task
+        $task = Task::factory()->create([
+            'title' => 'Old Title',
+            'description' => 'Old Description'
+        ]);
+
+        // Define the update data
+        $updateData = [
+            'title' => 'New Title',
+            'description' => 'New Description'
+        ];
+
+        // Send a PUT request to update the task
+        $response = $this->putJson("/api/tasks/{$task->id}", $updateData);
+
+        // Assert the response status
+        $response->assertStatus(200);
+
+        // Assert the response data
+        $response->assertJsonFragment([
+            'title' => 'New Title',
+            'description' => 'New Description'
+        ]);
+
+        // Retrieve the task from the database
+        $task->refresh();
+
+        // Assert that the task has been updated
+        $this->assertEquals('New Title', $task->title);
+        $this->assertEquals('New Description', $task->description);
     }
 
     public function test_can_delete_post()
