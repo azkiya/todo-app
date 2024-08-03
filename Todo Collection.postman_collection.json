@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "5b5721f3-b6af-4a37-8f24-f039c110559f",
+		"name": "Todo Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "4045831"
+	},
+	"item": [
+		{
+			"name": "create new tasks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 1,\n    \"title\": \"Send Email Customers\",\n    \"start_at\": \"2024-08-01 14:00:00\",\n    \"end_at\": \"2024-08-01 14:30:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "get all tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/tasks?status=2&start_at=2024-08-01 14:00:00&end_at=2024-08-01 14:30:00",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "2"
+						},
+						{
+							"key": "start_at",
+							"value": "2024-08-01 14:00:00"
+						},
+						{
+							"key": "end_at",
+							"value": "2024-08-01 14:30:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get single task by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 1,\n    \"title\": \"Send Email Customers\",\n    \"start_at\": \"2024-08-01 14:00:00\",\n    \"end_at\": \"2024-08-01 14:30:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/tasks/1"
+			},
+			"response": []
+		},
+		{
+			"name": "update task",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"title\": \"Buy Groceries updated\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/tasks/1"
+			},
+			"response": []
+		}
+	]
+}

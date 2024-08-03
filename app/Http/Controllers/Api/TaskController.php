@@ -59,13 +59,12 @@ class TaskController extends Controller
         }
 
         $task->update($request->all());
-
+ 
         return new TaskResource(200001, 'Task updated successfully', $task);
     }
 
     public function destroy($id)
     {
-
         $task = Task::find($id);
        if(empty($task)){
             return response()->json([
@@ -73,7 +72,6 @@ class TaskController extends Controller
                 "message" => "Task not found"
             ],404);
        }
-
         $task->delete();
 
         return new TaskResource(200001, 'Task todo deleted successfully', null);

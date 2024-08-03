@@ -14,6 +14,7 @@ class TaskApiTest extends TestCase
     public function test_can_get_all_tasks(): void
     {
         $response = $this->get('/api/tasks');
+        $response->dd();
         $response
         ->assertStatus(200)
         ->assertJson([
