@@ -1,5 +1,5 @@
 
-# Simple Auth App
+# Todo App
 Mini project for crud todo list
 ## Run Locally
 
@@ -19,9 +19,6 @@ Install dependencies
 
 ```bash
   composer install
-```
-```bash
-  npm install
 ```
 
 Setting environment
@@ -54,3 +51,4 @@ Run automation test
 - [@fany](https://github.com/azkiya)
 
 ## Documentation
+- [PostmanCollection](https://github.com/azkiya/todo-app/blob/main/Todo%20Collection.postman_collection.json)
