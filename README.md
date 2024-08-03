@@ -36,6 +36,12 @@ Start the server
   php artisan serve
 ```
 
+Run automation test
+
+```bash
+  php artisan test
+```
+
 
 ## Tech Stack
 
