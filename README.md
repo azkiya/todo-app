@@ -27,6 +27,18 @@ Setting environment
   create file .env minimal require from env.example, 
 ```
 
+Migration
+
+```bash
+  php artisan migrate 
+```
+
+Run seeder
+
+```bash
+  php artisan db:seed 
+```
+
 Start the server
 
 ```bash
