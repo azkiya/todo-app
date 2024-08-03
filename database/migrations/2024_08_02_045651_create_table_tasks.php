@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->biginteger('user_id');
             $table->string('title');
-            $table->tinytext('description')->nullable();
+            $table->text('description')->nullable();
             $table->enum('status', [1,2,3])->default(1);
             $table->datetime('start_at');
             $table->datetime('end_at');

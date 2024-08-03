@@ -26,7 +26,7 @@ class TaskController extends Controller
             return response()->json([
                 "status" =>  404001,
                 "message" => "Task not found"
-            ]);
+            ],404);
         }
 
         $data = new TaskResource(200001, 'Task retrieved successfully', $task);
@@ -49,7 +49,7 @@ class TaskController extends Controller
             return response()->json([
                 "status" =>  404001,
                 "message" => "Task not found"
-            ]);
+            ],404);
         }
 
         $task->update($request->all());
@@ -65,7 +65,7 @@ class TaskController extends Controller
             return response()->json([
                 "status" =>  404001,
                 "message" => "Task not found"
-            ]);
+            ],404);
        }
 
         $task->delete();

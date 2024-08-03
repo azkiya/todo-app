@@ -40,7 +40,7 @@ class TaskRequest extends FormRequest
             'user_id.required' => 'A id of user is required',
             'start_at.required' => 'A start date of task is required',
             'start_at.date' => 'A start date of task must to be datetime',
-            'end_at.required' => 'A end date of task task is required',
+            'end_at.required' => 'A end date of task is required',
             'start_at.date' => 'A start date of task must to be datetime'
         ];
     }
